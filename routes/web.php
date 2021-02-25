@@ -77,8 +77,18 @@ Route::view('login', 'login');
 // ================================================
 
 // Route::get('/post/{slug}', 'PostController@show');
-Route::get('post', 'PostController@index');
-Route::get('/post/{post:slug}', 'PostController@show');
+Route::get('posts', 'PostsController@index');
+
+Route::get('/posts/create', 'PostsController@create');
+Route::post('/posts/store', 'PostsController@store');
+
+Route::get('/posts/{post:slug}/edit', 'PostsController@edit');
+Route::patch('/posts/{post:slug}/edit', 'PostsController@update');
+// patch edit sebagian
+// put edit semua field
+Route::get('/posts/{post:slug}', 'PostsController@show');
+
+// Route::post('/posts/store', 'PostsController@store');
 // :slug adalah key
 
 // ================================================

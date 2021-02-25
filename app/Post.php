@@ -6,8 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    // =========== Cara 1
     //protected $table = 'posts'; 
     //untuk mengenali bahwa tabel yang digunakan adalah posts
+
+    // =========== Cara 2
+    protected $fillable = ['title', 'slug', 'body'];
+    // untuk mengatur inputan yang boleh diinputkan hanya yang di dalam array
+
+    // // =========== Cara 3
+    // protected $guarded = [];
+    // // digunakan hanya untuk blog pribadi tanpa ada user karena form dapat di edit
+
+
 
     // public function getRouteKeyName()
     // {
