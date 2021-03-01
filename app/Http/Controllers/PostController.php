@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     // public function show($slug)
     public function show(Post $post)
@@ -31,7 +31,7 @@ class PostsController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', ['post' => new Post()]);
     }
 
     // ===================
@@ -86,11 +86,9 @@ class PostsController extends Controller
     // // ===================
     // // =================== Cara 2 tidak menggunakan request
     // // ===================
-    public function store()
+    public function store(PostRequest $request)
     {
-        // Validate
-        $attr = $this->validateRequest();
-
+        $attr = $request->all();
         // mengubah title menjadi slug
         $attr['slug'] = \Str::slug(request('title'));
         // membuat post baru
@@ -112,23 +110,28 @@ class PostsController extends Controller
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        // Validate
-        $attr = $this->validateRequest();
-
+        $attr  = $request->all();
         $post->update($attr);
 
         session()->flash('success', 'Berhasil update data');
         return redirect('posts');
     }
 
-    public function validateRequest()
+    // public function validateRequest()
+    // {
+    //     // untuk mengatur field apa yang tidak boleh kosong
+    //     return request()->validate([
+    //         'title' => 'required|min:3',
+    //         'body' => 'required',
+    //     ]);
+    // }
+
+    public function destroy(Post $post)
     {
-        // untuk mengatur field apa yang tidak boleh kosong
-        return request()->validate([
-            'title' => 'required|min:3',
-            'body' => 'required',
-        ]);
+        $post->delete();
+        session()->flash("success", "Post berhasil dihapus");
+        return redirect('posts');
     }
 }
