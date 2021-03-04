@@ -5,7 +5,12 @@
 
         <div class="d-flex justify-content-between">
             <div>
-                <h4>All Post</h4>
+                {{-- bisa juga menggunakan @isset diakhiri dengan @endisset --}}
+                @if (isset($category))
+                    <h4>Category : {{$category->name}}</h4>
+                @else
+                    <h4>All Post</h4>
+                @endif
                 <hr>
             </div>
 

@@ -25,13 +25,21 @@ class Post extends Model
     //     return 'slug';
     // }
 
-    public function scopeLatestFirst()
-    {
-        return $this->latest()->first();
-    }
+    // public function scopeLatestFirst()
+    // {
+    //     return $this->latest()->first();
+    // }
 
-    public function scopeLatestPost()
+    // public function scopeLatestPost()
+    // {
+    //     return $this->latest()->get();
+    // }
+
+
+    public function category()
     {
-        return $this->latest()->get();
+        // // panggil model
+        return $this->belongsTo(Category::class, 'category_id');
+        // return $this->belongsTo(Category::class);
     }
 }

@@ -88,6 +88,9 @@ Route::patch('/posts/{post:slug}/edit', 'PostController@update');
 // put edit semua field
 
 Route::delete('posts/{post:slug}/delete', 'PostController@destroy');
+
+Route::get('categories/{category:slug}', 'CategoryController@show');
+
 Route::get('/posts/{post:slug}', 'PostController@show');
 
 // Route::post('/posts/store', 'PostController@store');
