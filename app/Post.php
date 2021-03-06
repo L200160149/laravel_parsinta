@@ -42,4 +42,10 @@ class Post extends Model
         return $this->belongsTo(Category::class, 'category_id');
         // return $this->belongsTo(Category::class);
     }
+
+    // untuk membuat relasi n-m ke Tag Model
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }

@@ -8,7 +8,13 @@
                 {{-- bisa juga menggunakan @isset diakhiri dengan @endisset --}}
                 @if (isset($category))
                     <h4>Category : {{$category->name}}</h4>
-                @else
+                @endif
+
+                @if (isset($tag))
+                    <h4>Tag : {{$tag->name}}</h4>
+                @endif
+
+                @if (!isset($category) && !isset($tag))
                     <h4>All Post</h4>
                 @endif
                 <hr>
